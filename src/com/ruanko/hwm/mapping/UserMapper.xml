@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruanko.hwm.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.ruanko.hwm.bean.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="playCount" property="playcount" jdbcType="INTEGER" />
+    <result column="lastLoginTime" property="lastlogintime" jdbcType="TIMESTAMP" />
+    <result column="lastLoginIp" property="lastloginip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, img, tel, level, grade, email, age, playCount, lastLoginTime, 
+    lastLoginIp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ruanko.hwm.bean.User" >
+    insert into tb_user (id, username, password, 
+      img, tel, level, grade, 
+      email, age, playCount, 
+      lastLoginTime, lastLoginIp)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{img,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{playcount,jdbcType=INTEGER}, 
+      #{lastlogintime,jdbcType=TIMESTAMP}, #{lastloginip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruanko.hwm.bean.User" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="playcount != null" >
+        playCount,
+      </if>
+      <if test="lastlogintime != null" >
+        lastLoginTime,
+      </if>
+      <if test="lastloginip != null" >
+        lastLoginIp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="playcount != null" >
+        #{playcount,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginip != null" >
+        #{lastloginip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruanko.hwm.bean.User" >
+    update tb_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="playcount != null" >
+        playCount = #{playcount,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginip != null" >
+        lastLoginIp = #{lastloginip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruanko.hwm.bean.User" >
+    update tb_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      playCount = #{playcount,jdbcType=INTEGER},
+      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      lastLoginIp = #{lastloginip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

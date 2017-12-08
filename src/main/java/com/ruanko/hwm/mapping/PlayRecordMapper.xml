@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruanko.hwm.dao.PlayRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ruanko.hwm.bean.PlayRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="musicId" property="musicid" jdbcType="INTEGER" />
+    <result column="playTime" property="playtime" jdbcType="TIMESTAMP" />
+    <result column="playCounts" property="playcounts" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, musicId, playTime, playCounts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_playrecord
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_playrecord
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_playrecord
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ruanko.hwm.bean.PlayRecord" >
+    insert into tb_playrecord (id, userId, musicId, 
+      playTime, playCounts)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{musicid,jdbcType=INTEGER}, 
+      #{playtime,jdbcType=TIMESTAMP}, #{playcounts,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruanko.hwm.bean.PlayRecord" >
+    insert into tb_playrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="musicid != null" >
+        musicId,
+      </if>
+      <if test="playtime != null" >
+        playTime,
+      </if>
+      <if test="playcounts != null" >
+        playCounts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="musicid != null" >
+        #{musicid,jdbcType=INTEGER},
+      </if>
+      <if test="playtime != null" >
+        #{playtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playcounts != null" >
+        #{playcounts,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruanko.hwm.bean.PlayRecord" >
+    update tb_playrecord
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="musicid != null" >
+        musicId = #{musicid,jdbcType=INTEGER},
+      </if>
+      <if test="playtime != null" >
+        playTime = #{playtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playcounts != null" >
+        playCounts = #{playcounts,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruanko.hwm.bean.PlayRecord" >
+    update tb_playrecord
+    set userId = #{userid,jdbcType=INTEGER},
+      musicId = #{musicid,jdbcType=INTEGER},
+      playTime = #{playtime,jdbcType=TIMESTAMP},
+      playCounts = #{playcounts,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

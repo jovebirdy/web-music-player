@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	
+<tiles-definitions>
+	
+	<!-- 前台模板 -->
+	<definition name="template_front" template="/jsp/front/common/main1.jsp">
+		<put-attribute name="top" value="/jsp/front/common/top.jsp" />
+		<put-attribute name="bottom" value="/jsp/front/common/bottom.jsp" />
+		<put-attribute name="content" value="" />
+	</definition>
+	<!-- 歌手信息模板 -->
+	<definition name="singerMess" template="/jsp/front/common/singerMessTop.jsp">
+		<put-attribute name="top" value="/jsp/front/common/top.jsp" />
+		<put-attribute name="bottom" value="/jsp/front/common/bottom.jsp" />
+		<put-attribute name="singerMessTop" value="/jsp/front/common/singerMessImp.jsp" />	
+		<put-attribute name="singerMessRight" value="/jsp/front/singer/singerMessRight.jsp" />		
+		<put-attribute name="content" value="" />
+	</definition>
+	<!-- 错误页面 -->
+	<definition name="error" template="/jsp/error.jsp"></definition>
+	<!-- 主界面 -->	
+	<definition name="showHome" template="/jsp/front/common/main.jsp"></definition>
+	<!-- 内嵌主界面 -->
+	<definition name="showHome1" extends="template_front">
+		<put-attribute name="content" value="/index.jsp" />
+	</definition>
+	
+	<!-- 歌单界面 -->	
+	<definition name="showMusicList" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/findMusic/musicList.jsp" />
+	</definition>
+	
+	<!-- 排行榜界面 -->	
+	<definition name="showRankList" template="/jsp/front/findMusic/rank_main.jsp">
+		<put-attribute name="top" value="/jsp/front/common/top.jsp" />
+		<put-attribute name="bottom" value="/jsp/front/common/bottom.jsp" />
+		<put-attribute name="left" value="/jsp/front/findMusic/rank_sort.jsp" />
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- 排行榜界面 -->	
+	<definition name="showRank" extends="showRankList">
+		<put-attribute name="content" value="/jsp/front/findMusic/rank_right.jsp" />
+	</definition>
+	
+	<!-- 电台界面 -->	
+	<definition name="showRadio" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/findMusic/radio.jsp" />
+	</definition>
+	
+	<!-- 新碟上架界面 -->	
+	<definition name="showAlbum" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/findMusic/album.jsp" />
+	</definition>
+
+	<!-- 歌曲信息界面 -->	
+	<definition name="showMusicInfo" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/music/musicMessage.jsp" />
+	</definition>
+	
+	<!-- 显示当前用户的歌单 -->
+	<definition name="showMusicListOfUser" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/common/musicList_User.jsp"/>
+	</definition>
+	
+	<!-- 显示当前用户的歌单 -->
+	<definition name="currentUserMsg" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/common/personPage.jsp"/>
+	</definition>
+	
+	<!-- 显示搜索结果 -->
+	<definition name="showSearchResult" extends="template_front">
+		<put-attribute name="content" value="/jsp/front/common/showSearchResult.jsp"/>
+	</definition>
+	
+	<!-- 歌手信息界面 -->	
+	<definition name="showSingerInfo" extends="singerMess">
+		<put-attribute name="content" value="/jsp/front/singer/singerMessage.jsp" />
+	</definition>
+	
+	<!-- 歌手分类 -->
+	<definition name="singersort" template="/jsp/front/common/singer_main.jsp">
+		<put-attribute name="top" value="/jsp/front/common/top.jsp" />
+		<put-attribute name="bottom" value="/jsp/front/common/bottom.jsp" />
+		<put-attribute name="left" value="/jsp/front/common/singer_sort.jsp" />
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- 歌手界面 -->	
+	<definition name="showSinger" extends="singersort">
+		<put-attribute name="content" value="/jsp/front/common/singer_right.jsp" />
+	</definition>
+	
+	<!-- 歌手推荐界面 -->	
+	<definition name="showSinger1" extends="singersort">
+		<put-attribute name="content" value="/jsp/front/common/singer_right1.jsp" />
+	</definition>
+	
+	<!-- 歌手入驻界面 -->	
+	<definition name="showSinger2" extends="singersort">
+		<put-attribute name="content" value="/jsp/front/common/singer_right2.jsp" />
+	</definition>
+	
+	<!-- 用户注册界面 -->
+	<definition name="showLogup" template="/jsp/front/common/logup.jsp"></definition>
+	<!-- 用户找回密码界面 -->
+	<definition name="showGetPassword" template="/jsp/front/common/getPassword.jsp"></definition>
+	<!-- 用户修改密码界面 -->
+	<definition name="showAlterPwd" template="/jsp/front/common/alterPassword.jsp"></definition>
+	<!-- 后台登录界面 -->	
+	<definition name="showAdminLogin" template="/jsp/back/loginup/login.jsp"></definition>
+	<!-- 后台注册界面 -->	
+	<definition name="showAdminLogup" template="/jsp/back/loginup/logup.jsp"></definition>
+	<!-- 后台首页界面 -->	
+	<definition name="showAdminIndex" template="/jsp/back/main/index.jsp"></definition>
+	<!-- 后台添加音乐界面 -->	
+	<definition name="showAddMusic" template="/jsp/back/main/addMusic.jsp"></definition>
+	<!-- 后台管理音乐界面 -->	
+	<definition name="showManageMusic" template="/jsp/back/main/manageMusic.jsp"></definition>
+	<!-- 后台添加歌手界面 -->	
+	<definition name="showAddSinger" template="/jsp/back/main/addSinger.jsp"></definition>
+	<!-- 后台管理歌手界面 -->	
+	<definition name="showManageSinger" template="/jsp/back/main/manageSinger.jsp"></definition>
+	<!-- 后台管理用户界面 -->	
+	<definition name="showManageUser" template="/jsp/back/main/manageUser.jsp"></definition>
+	<!-- 后台添加管理员界面 -->	
+	<definition name="showAddAdmin" template="/jsp/back/main/addAdmin.jsp"></definition>
+	<!-- 后台管理管理员界面 -->	
+	<definition name="showManageAdmin" template="/jsp/back/main/manageAdmin.jsp"></definition>
+	<!-- 后台没有权限界面 -->	
+	<definition name="showNoAuth" template="/jsp/back/noAuth.jsp"></definition>
+</tiles-definitions>

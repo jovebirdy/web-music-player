@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruanko.hwm.dao.MusicMapper" >
+  <resultMap id="BaseResultMap" type="com.ruanko.hwm.bean.Music" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="musicName" property="musicname" jdbcType="VARCHAR" />
+    <result column="uploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="playCounts" property="playcounts" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="lyr" property="lyr" jdbcType="VARCHAR" />
+    <result column="musicTime" property="musictime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, musicName, uploadTime, playCounts, img, lyr, musicTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_music
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectMusicByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_music
+    where id in(select tb_collection.musicId from tb_collection where tb_collection.userId=#{id,jdbcType=INTEGER})
+  </select>
+  
+  <select id="selectAllMusic" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_music
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_music
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ruanko.hwm.bean.Music" >
+    insert into tb_music (id, musicName, uploadTime, 
+      playCounts, img, lyr, 
+      musicTime)
+    values (#{id,jdbcType=INTEGER}, #{musicname,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}, 
+      #{playcounts,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{lyr,jdbcType=VARCHAR}, 
+      #{musictime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruanko.hwm.bean.Music" >
+    insert into tb_music
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="musicname != null" >
+        musicName,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="playcounts != null" >
+        playCounts,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="lyr != null" >
+        lyr,
+      </if>
+      <if test="musictime != null" >
+        musicTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="musicname != null" >
+        #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playcounts != null" >
+        #{playcounts,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="lyr != null" >
+        #{lyr,jdbcType=VARCHAR},
+      </if>
+      <if test="musictime != null" >
+        #{musictime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruanko.hwm.bean.Music" >
+    update tb_music
+    <set >
+      <if test="musicname != null" >
+        musicName = #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playcounts != null" >
+        playCounts = #{playcounts,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="lyr != null" >
+        lyr = #{lyr,jdbcType=VARCHAR},
+      </if>
+      <if test="musictime != null" >
+        musicTime = #{musictime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruanko.hwm.bean.Music" >
+    update tb_music
+    set musicName = #{musicname,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      playCounts = #{playcounts,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      lyr = #{lyr,jdbcType=VARCHAR},
+      musicTime = #{musictime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
